@@ -1,0 +1,1270 @@
+
+/* borges website styles */
+
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+::selection {
+    background: #ffffff33;
+    color: #fff;
+}
+
+
+/* navigation bar - stays at the top */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1.2rem 2rem;
+    background: rgba(10, 10, 10, 0.92);
+    border-bottom: 1px solid #ffffff10;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.nav a {
+    color: #ffffff50;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+/* underline that grows on hover */
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    transition: width 0.3s ease;
+}
+
+.nav a:hover {
+    color: #ffffff;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* each nav link has its own color */
+.nav a.nav-home:hover { color: #ffffff; }
+.nav a.nav-home::after { background: #ffffff; }
+.nav a.nav-sand:hover { color: #FF3C38; }
+.nav a.nav-sand::after { background: #FF3C38; }
+.nav a.nav-ruins:hover { color: #3B82F6; }
+.nav a.nav-ruins::after { background: #3B82F6; }
+.nav a.nav-paths:hover { color: #FBBF24; }
+.nav a.nav-paths::after { background: #FBBF24; }
+
+/* the current page link is highlighted */
+.nav a.active { color: #ffffff; }
+.nav a.nav-sand.active { color: #FF3C38; }
+.nav a.nav-sand.active::after { width: 100%; }
+.nav a.nav-ruins.active { color: #3B82F6; }
+.nav a.nav-ruins.active::after { width: 100%; }
+.nav a.nav-paths.active { color: #FBBF24; }
+.nav a.nav-paths.active::after { width: 100%; }
+.nav a.nav-home.active { color: #ffffff; }
+.nav a.nav-home.active::after { width: 100%; background: #fff; }
+
+
+/* HOMEPAGE */
+
+.home-container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* the whole homepage is position absolute - everything placed freely */
+.maze-layout {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* each piece on the homepage is positioned absolutely */
+.maze-piece {
+    position: absolute;
+    transition: all 0.5s ease;
+}
+
+/* scattered words in the background - they float around slowly */
+.maze-fragment {
+    font-family: 'EB Garamond', serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    pointer-events: none;
+    user-select: none;
+    animation: drift 20s ease-in-out infinite;
+}
+
+/* each fragment drifts at a different speed */
+.maze-fragment:nth-child(odd) {
+    animation: driftSlow 25s ease-in-out infinite;
+}
+
+.maze-fragment:nth-child(3n) {
+    animation: driftDiagonal 30s ease-in-out infinite;
+}
+
+@keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -15px); }
+    50% { transform: translate(-8px, 8px); }
+    75% { transform: translate(12px, 5px); }
+}
+
+@keyframes driftSlow {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-15px, 10px) rotate(1deg); }
+    66% { transform: translate(8px, -12px) rotate(-1deg); }
+}
+
+@keyframes driftDiagonal {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -20px); }
+}
+
+/* small labels */
+.maze-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+/* entry cards scattered around - they pulse gently */
+.maze-card {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid #ffffff10;
+    cursor: pointer;
+    animation: cardPulse 6s ease-in-out infinite;
+}
+
+.maze-card:nth-child(2) { animation-delay: -2s; }
+.maze-card:nth-child(3) { animation-delay: -4s; }
+
+@keyframes cardPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.maze-card:hover {
+    transform: scale(1.15);
+    border-color: #ffffff30;
+    animation: none;
+    opacity: 1;
+}
+
+.maze-card.card-sand:hover { border-color: #FF3C3850; }
+.maze-card.card-ruins:hover { border-color: #3B82F650; }
+.maze-card.card-paths:hover { border-color: #FBBF2450; }
+
+
+/* small labels float up and down slowly */
+.maze-label {
+    animation: labelFloat 12s ease-in-out infinite;
+}
+
+@keyframes labelFloat {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-8px); opacity: 0.7; }
+}
+
+
+/* the 3 big title links on the homepage */
+.home-title {
+    display: block;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.home-title:hover {
+    transform: scale(1.05);
+    letter-spacing: 0.02em;
+}
+
+/* little description under each title */
+.home-title-tag {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.home-title:hover .home-title-tag {
+    opacity: 0.5;
+}
+
+/* book of sand title style - HUGE */
+.title-sand {
+    font-family: 'EB Garamond', serif;
+    font-size: 12vw;
+    font-weight: 800;
+    color: #FF3C38;
+    letter-spacing: -0.04em;
+    line-height: 0.8;
+}
+
+.title-sand .small-word {
+    font-size: 0.18em;
+    font-weight: 400;
+    font-style: italic;
+    display: block;
+    letter-spacing: 0.2em;
+    color: #FF3C3860;
+}
+
+.title-sand:hover {
+    text-shadow: 0 0 80px #FF3C3840;
+}
+
+/* circular ruins title style - HUGE */
+.title-ruins {
+    font-family: 'Space Mono', monospace;
+    font-size: 8vw;
+    font-weight: 700;
+    color: #3B82F6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 0.85;
+}
+
+.title-ruins .small-word {
+    font-size: 0.3em;
+    font-weight: 400;
+    display: block;
+    letter-spacing: 0.4em;
+    color: #3B82F650;
+}
+
+.title-ruins:hover {
+    text-shadow: 0 0 80px #3B82F640;
+}
+
+/* forking paths title style - HUGE */
+.title-paths {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10vw;
+    font-weight: 700;
+    color: #FBBF24;
+    letter-spacing: -0.03em;
+    line-height: 0.85;
+}
+
+.title-paths .small-word {
+    font-size: 0.15em;
+    font-weight: 400;
+    display: block;
+    letter-spacing: 0.3em;
+    color: #FBBF2460;
+}
+
+.title-paths:hover {
+    text-shadow: 0 0 80px #FBBF2440;
+}
+
+/* author name */
+.home-author {
+    margin-top: 4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #ffffff30;
+}
+
+/* thin line divider */
+.home-divider {
+    width: 60px;
+    height: 1px;
+    background: #ffffff15;
+    margin: 2rem 0;
+}
+
+/* borges quote block */
+.home-quote-block {
+    text-align: center;
+    margin: 2rem 0 3rem 0;
+    max-width: 600px;
+}
+
+.home-quote {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #ffffff30;
+    line-height: 1.6;
+}
+
+.home-quote-attr {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: #ffffff15;
+    margin-top: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* hint text telling users to hover */
+.home-cursor-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+}
+
+/* glowing words on homepage */
+.home-highlight {
+    font-weight: 700;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.sand-glow { color: #FF3C38; }
+.sand-glow:hover { text-shadow: 0 0 15px #FF3C3860; }
+.ruins-glow { color: #3B82F6; }
+.ruins-glow:hover { text-shadow: 0 0 15px #3B82F660; }
+.paths-glow { color: #FBBF24; }
+.paths-glow:hover { text-shadow: 0 0 15px #FBBF2460; }
+
+/* three cards at bottom of homepage */
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 700px;
+    margin: 1rem 0 3rem 0;
+}
+
+.home-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    border: 1px solid #ffffff10;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+.home-card:hover {
+    border-color: #ffffff25;
+    transform: translateY(-4px);
+}
+
+.card-sand:hover { border-color: #FF3C3840; }
+.card-ruins:hover { border-color: #3B82F640; }
+.card-paths:hover { border-color: #FBBF2440; }
+
+.card-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: #ffffff30;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.card-sand:hover .card-label { color: #FF3C3880; }
+.card-ruins:hover .card-label { color: #3B82F680; }
+.card-paths:hover .card-label { color: #FBBF2480; }
+
+/* bottom text on homepage */
+.home-colophon {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.colophon-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: transparent;
+    transition: all 0.8s ease;
+    cursor: default;
+    line-height: 2;
+}
+
+.colophon-text:hover {
+    color: #ffffff50;
+    letter-spacing: 0.5em;
+    text-shadow: 0 0 20px #ffffff15;
+}
+
+
+/* ---- STORY PAGES - SHARED LAYOUT ---- */
+
+.book-page {
+    padding: 8rem 2rem 6rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.book-header {
+    margin-bottom: 4rem;
+}
+
+.book-header .book-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+}
+
+
+/* STORY LINKS links to wikipedia */
+/* color background highlight tihi */
+
+.story-link {
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    padding: 0 0.15em;
+}
+
+/* red links on sand page */
+.sand-page .story-link {
+    color: #FF3C3890;
+    border-bottom-color: #FF3C3830;
+}
+.sand-page .story-link:hover {
+    color: #ffffff;
+    background: #FF3C3840;
+    border-bottom-color: transparent;
+    letter-spacing: 0.05em;
+}
+
+/* blue links on ruins page */
+.ruins-page .story-link {
+    color: #3B82F690;
+    border-bottom-color: #3B82F630;
+}
+.ruins-page .story-link:hover {
+    color: #ffffff;
+    background: #3B82F640;
+    border-bottom-color: transparent;
+    letter-spacing: 0.05em;
+}
+
+/* gold links on paths page */
+.paths-page .story-link {
+    color: #FBBF2490;
+    border-bottom-color: #FBBF2430;
+}
+.paths-page .story-link:hover {
+    color: #ffffff;
+    background: #FBBF2440;
+    border-bottom-color: transparent;
+    letter-spacing: 0.05em;
+}
+
+
+/*  BOOK OF SAND - red color*/
+/* EB Garamond serif */
+
+.sand-page {
+    background-color: #0d0908;
+}
+
+.sand-page .book-page {
+    max-width: 750px;
+}
+
+.sand-page .book-title-display {
+    font-family: 'EB Garamond', serif;
+    font-weight: 800;
+    font-size: 5rem;
+    line-height: 0.85;
+    color: #FF3C38;
+    margin-bottom: 0.5rem;
+}
+
+.sand-page .book-title-display .title-of {
+    font-size: 0.2em;
+    font-weight: 400;
+    font-style: italic;
+    color: #FF3C3860;
+    display: block;
+    letter-spacing: 0.1em;
+}
+
+.sand-page .book-author {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #FF3C3850;
+    text-transform: uppercase;
+}
+
+/* when you select text on the sand page its red */
+.sand-page ::selection {
+    background: #FF3C3840;
+    color: #fff;
+}
+
+.sand-section {
+    margin-bottom: 3rem;
+}
+
+/* body text for book of sand */
+.sand-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #d8cfc5;
+    text-align: justify;
+}
+
+/* bigger text for important lines */
+.sand-text-large {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #ffffff;
+    margin: 2rem 0;
+}
+
+/* pull quotes - big italic red text */
+.sand-pull-quote {
+    font-family: 'EB Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-style: italic;
+    color: #FF3C38;
+    line-height: 1.15;
+    margin: 4rem 0;
+    text-align: center;
+}
+
+/* left border appears when hovering over section*/
+.sand-page .book-section {
+    padding-left: 1.5rem;
+    border-left: 2px solid transparent;
+    transition: all 0.6s ease;
+}
+
+.sand-page .book-section:hover {
+    border-left-color: #FF3C3830;
+}
+
+/* pull quote gets bigger on hover */
+.sand-pull-quote:hover {
+    transform: scale(1.03);
+    transition: all 0.5s ease;
+}
+
+
+/* CIRCULAR RUINS - blue*/
+/* monospace font*/
+
+.ruins-page {
+    background-color: #040608;
+}
+
+.ruins-page .book-page {
+    max-width: 750px;
+}
+
+.ruins-page .book-title-display {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 0.95;
+    color: #3B82F6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ruins-page .book-title-display .title-the {
+    font-size: 0.3em;
+    font-weight: 400;
+    display: block;
+    letter-spacing: 0.5em;
+    color: #3B82F660;
+}
+
+.ruins-page .book-author {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #3B82F650;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+/* blue text selection */
+.ruins-page ::selection {
+    background: #3B82F640;
+    color: #fff;
+}
+
+.ruins-section {
+    margin-bottom: 3rem;
+}
+
+/* body text for circular ruins */
+.ruins-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 2;
+    color: #a0b4d0;
+    text-align: justify;
+}
+
+/* bigger text */
+.ruins-text-large {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #c0d8ff;
+    margin: 2rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-left: 3px solid #3B82F640;
+    padding-left: 1.5rem;
+}
+
+/* pull quotes in a box */
+.ruins-pull-quote {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #3B82F6;
+    line-height: 1.3;
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid #3B82F625;
+    background: #3B82F608;
+    text-transform: uppercase;
+}
+
+/* left border on section hover */
+.ruins-page .book-section {
+    padding-left: 1rem;
+    border-left: 2px solid transparent;
+    transition: all 0.4s ease;
+}
+
+.ruins-page .book-section:hover {
+    border-left-color: #3B82F640;
+}
+
+/* pull quote shifts right on hover */
+.ruins-pull-quote:hover {
+    transform: translateX(4px);
+    border-color: #3B82F650;
+    transition: all 0.3s ease;
+}
+
+
+/* GARDEN OF FORKING PATHS */
+
+.paths-page {
+    background-color: #0a0a06;
+}
+
+.paths-page .book-page {
+    max-width: 750px;
+}
+
+.paths-page .book-title-display {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 0.9;
+    color: #FBBF24;
+    letter-spacing: -0.03em;
+}
+
+.paths-page .book-title-display .title-the {
+    font-size: 0.25em;
+    font-weight: 400;
+    display: block;
+    letter-spacing: 0.2em;
+    color: #FBBF2460;
+}
+
+.paths-page .book-author {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #FBBF2450;
+    text-transform: uppercase;
+    margin-top: 1rem;
+}
+
+/* gold text selection */
+.paths-page ::selection {
+    background: #FBBF2440;
+    color: #fff;
+}
+
+.paths-section {
+    margin-bottom: 3rem;
+}
+
+/* body text for forking paths */
+.paths-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #d0d0d0;
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* bigger text */
+.paths-text-large {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    margin: 2rem 0;
+}
+
+/* big gold pull quotes */
+.paths-pull-quote {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #FBBF24;
+    line-height: 1.1;
+    margin: 4rem -2rem;
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid #FBBF2420;
+    border-bottom: 1px solid #FBBF2420;
+}
+
+/* some sections are indented from the left */
+.paths-indent-right {
+    margin-left: 8%;
+    padding-left: 2rem;
+    border-left: 1px solid #FBBF2415;
+}
+
+/* left border on hover */
+.paths-page .book-section {
+    padding-left: 1rem;
+    border-left: 2px solid transparent;
+    transition: all 0.5s ease;
+}
+
+.paths-page .book-section:hover {
+    border-left-color: #FBBF2430;
+}
+
+/* indented sections have a border */
+.paths-page .paths-indent-right:hover {
+    border-left-color: #FBBF2440;
+}
+
+/* pull quote hover */
+.paths-pull-quote:hover {
+    transform: scale(1.02);
+    border-color: #FBBF2440;
+    transition: all 0.5s ease;
+}
+
+
+/* cross links between texts */
+
+.cross-link {
+    position: relative;
+    cursor: pointer;
+    font-style: italic;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+    display: inline-block;
+}
+
+/* each cross-link color base on where it goes */
+.cross-link.to-sand { color: #FF3C38; }
+.cross-link.to-ruins { color: #3B82F6; }
+.cross-link.to-paths { color: #FBBF24; }
+
+/* cross-links scale up HUGE on hover */
+.cross-link:hover {
+    transform: scale(2.5);
+    transform-origin: center bottom;
+    z-index: 20;
+    border-bottom: none;
+}
+
+.cross-link.to-sand:hover { text-shadow: 0 0 20px #FF3C3880; }
+.cross-link.to-ruins:hover { text-shadow: 0 0 20px #3B82F680; }
+.cross-link.to-paths:hover { text-shadow: 0 0 20px #FBBF2480; }
+
+/* tooltip that appears above the cross link */
+.cross-link .link-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: #1a1a1a;
+    border: 1px solid #ffffff15;
+    padding: 0.4rem 0.8rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    color: #ffffff80;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.cross-link:hover .link-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    font-size: 0.6rem;
+}
+
+
+/* flashlight cursor */
+
+.spotlight-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 500;
+    background: radial-gradient(
+        circle 250px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        transparent 0%,
+        rgba(5, 5, 5, 0.85) 100%
+    );
+    transition: background 0.05s ease;
+}
+
+
+/* HIDDEN TEXT (hover to see) */
+
+.spotlight-hidden {
+    color: transparent;
+    transition: all 0.6s ease;
+    cursor: default;
+}
+
+.spotlight-hidden:hover {
+    color: #ffffff70;
+    letter-spacing: 0.3em;
+}
+
+/* text that is invisible until you hover */
+.hidden-text {
+    color: transparent;
+    transition: all 0.6s ease;
+    cursor: pointer;
+    padding: 0 0.1em;
+}
+
+.hidden-text:hover {
+    color: #ffffff90;
+}
+
+/* each page reveals in its own accent color */
+.sand-page .hidden-text:hover {
+    color: #FF3C3890;
+}
+
+.ruins-page .hidden-text:hover {
+    color: #3B82F690;
+}
+
+.paths-page .hidden-text:hover {
+    color: #FBBF2490;
+}
+
+/* invisible until you hover, then it shows up big */
+.hover-reveal {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: transparent;
+    transition: all 0.6s ease;
+    cursor: default;
+    display: block;
+    text-align: center;
+    margin: 2rem 0;
+    line-height: 1.4;
+}
+
+.hover-reveal:hover {
+    color: #ffffff60;
+}
+
+/* each page gets its own font for the hover reveal */
+.sand-page .hover-reveal {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+}
+
+.sand-page .hover-reveal:hover {
+    color: #FF3C3860;
+    text-shadow: 0 0 30px #FF3C3820;
+}
+
+.ruins-page .hover-reveal {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+}
+
+.ruins-page .hover-reveal:hover {
+    color: #3B82F660;
+    text-shadow: 0 0 30px #3B82F620;
+}
+
+.paths-page .hover-reveal {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2rem;
+}
+
+.paths-page .hover-reveal:hover {
+    color: #FBBF2460;
+    text-shadow: 0 0 30px #FBBF2420;
+}
+
+.home-page .hover-reveal {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.home-page .hover-reveal:hover {
+    color: #ffffff40;
+    text-shadow: 0 0 20px #ffffff10;
+}
+
+
+/* ANIMATIONS */
+
+/* fade in from below - plays when page loads */
+.fade-in {
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* BOOK OF SAND - SPECIAL ELEMENTS */
+
+/* floating page numbers that drift up and down */
+.sand-page-numbers {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.sand-page-number {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    color: #FF3C3815;
+    user-select: none;
+    margin: 0 1.5rem;
+    animation: driftNumber 30s ease-in-out infinite;
+}
+
+.pn-1 { font-size: 2rem; animation-delay: 0s; }
+.pn-2 { font-size: 1.5rem; animation-delay: -6s; }
+.pn-3 { font-size: 1rem; animation-delay: -12s; }
+.pn-4 { font-size: 2.5rem; animation-delay: -18s; }
+.pn-5 { font-size: 1.2rem; animation-delay: -24s; }
+
+@keyframes driftNumber {
+    0%, 100% { transform: translateY(0); opacity: 0.3; }
+    50% { transform: translateY(-10px); opacity: 0.6; }
+}
+
+/* epigraph quote at the top */
+.sand-epigraph {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #FF3C3830;
+    margin-top: 0.8rem;
+}
+
+/* page turn divider */
+.sand-page-turn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1rem 0;
+}
+
+.page-turn-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: #FF3C3825;
+    text-transform: uppercase;
+}
+
+.page-turn-line {
+    width: 60px;
+    height: 1px;
+    background: #FF3C3820;
+}
+
+
+/* CIRCULAR RUINS - SPECIAL ELEMENTS */
+
+.ruins-circles {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.ruins-circle {
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #3B82F610;
+    margin: 0 1rem;
+    animation: circleExpand 15s ease-in-out infinite;
+}
+
+.circle-1 {
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 70px;
+    height: 70px;
+    animation-delay: -5s;
+}
+
+.circle-3 {
+    width: 100px;
+    height: 100px;
+    animation-delay: -10s;
+}
+
+@keyframes circleExpand {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+/* epigraph from through the looking glass */
+.ruins-epigraph {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: #3B82F630;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+}
+
+/* dream/wake divider - marks transitions between states */
+.ruins-dream-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 3rem 0;
+    padding: 1rem 0;
+}
+
+.dream-state {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.4em;
+    color: #3B82F620;
+    text-transform: uppercase;
+}
+
+.dream-line {
+    width: 50px;
+    height: 1px;
+    background: #3B82F615;
+    animation: dreamPulse 4s ease-in-out infinite;
+}
+
+@keyframes dreamPulse {
+    0%, 100% { opacity: 0.5; width: 50px; }
+    50% { opacity: 1; width: 70px; }
+}
+
+
+/* OTHER STUFF */
+
+.content-layer {
+    position: relative;
+    z-index: 1;
+}
+
+/* page fades in when you navigate */
+.page-wrapper {
+    animation: pageIn 0.6s ease;
+}
+
+@keyframes pageIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* back to top arrow */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: #ffffff20;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.back-to-top:hover {
+    color: #ffffff80;
+    transform: translateY(-5px);
+}
+
+
+/* mobile adapt*/
+
+@media (max-width: 768px) {
+    .nav {
+        gap: 1.2rem;
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+        padding: 1rem;
+    }
+
+    .book-page {
+        padding: 6rem 1.2rem 4rem 1.2rem;
+    }
+
+    /* no spotlight on mobile since theres no mouse */
+    .spotlight-overlay {
+        display: none;
+    }
+
+    /* on mobile the maze scrolls instead of absolute */
+    .maze-layout {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+        padding: 5rem 1rem 3rem 1rem;
+    }
+
+    .maze-piece {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        display: block;
+        margin: 2rem 0;
+        transform: none !important;
+    }
+
+    .maze-fragment {
+        font-size: 1.5rem;
+    }
+
+    .maze-card {
+        display: inline-block;
+        margin: 0.5rem;
+    }
+
+    /* no decorative elements on mobile */
+    .sand-page-numbers {
+        display: none;
+    }
+
+    .ruins-circles {
+        display: none;
+    }
+
+    /* MOBILE ZIG ZAG */
+    .paths-indent-right {
+        margin-left: 0;
+        padding-left: 1rem;
+        border-left: none;
+    }
+
+    .paths-pull-quote {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* MOBILE SIZE */
+    .title-sand { font-size: 18vw; }
+    .title-ruins { font-size: 14vw; }
+    .title-paths { font-size: 16vw; }
+    .sand-page .book-title-display { font-size: 3.5rem; }
+    .ruins-page .book-title-display { font-size: 2.5rem; }
+    .paths-page .book-title-display { font-size: 3rem; }
+}

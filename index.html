@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borges — Three Stories</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+
+<div class="page-wrapper">
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <a href="index.html" class="nav-home active">Home</a>
+        <a href="BookOfSand.html" class="nav-sand">The Book of Sand</a>
+        <a href="TheCircularRuins.html" class="nav-ruins">The Circular Ruins</a>
+        <a href="GardenOfPaths.html" class="nav-paths">Forking Paths</a>
+    </nav>
+
+    <!-- HOMEPAGE - scattered like a maze -->
+    <main class="home-container">
+
+        <!--scattered titles and fragments all over the page -->
+        <div class="maze-layout">
+
+            <!-- top left fragment -->
+            <a href="TheCircularRuins.html" class="maze-piece" style="top: 8%; left: 5%;">
+                <span class="maze-label" style="color: #3B82F640;">he dreamed a man</span>
+            </a>
+
+            <!-- BOOK 1 - positioned upper left, huge -->
+            <a href="BookOfSand.html" class="maze-piece maze-title title-sand" style="top: 10%; left: 3%;">
+                <span class="small-word">The Book of</span>
+                Sand
+            </a>
+
+            <!-- floating quote fragment -->
+            <span class="maze-piece maze-fragment" style="top: 12%; right: 15%; color: #ffffff10;">
+                neither beginning
+            </span>
+
+            <!-- BOOK 2 - positioned middle, crowding into sand -->
+            <a href="TheCircularRuins.html" class="maze-piece maze-title title-ruins" style="top: 32%; right: 2%;">
+                <span class="small-word">The</span>
+                Circular<br>Ruins
+            </a>
+
+            <!-- cursor hint floats in the middle -->
+            <p class="maze-piece home-cursor-hint" style="top: 35%; left: 8%;">
+                Move the cursor to<br>discover hidden messages.
+            </p>
+
+            <!-- scattered word -->
+            <span class="maze-piece maze-fragment" style="top: 50%; left: 20%; color: #FF3C3815;">
+                infinite
+            </span>
+
+            <!-- another scattered word -->
+            <span class="maze-piece maze-fragment" style="top: 28%; left: 55%; color: #FBBF2415;">
+                labyrinth
+            </span>
+
+            <!-- author -->
+            <p class="maze-piece home-author" style="top: 55%; right: 25%;">
+                Three stories by<br>Jorge Luis Borges
+            </p>
+
+            <!-- BOOK 3 - positioned lower, crowding into ruins -->
+            <a href="GardenOfPaths.html" class="maze-piece maze-title title-paths" style="top: 55%; left: 1%;">
+                <span class="small-word">The Garden of</span>
+                Forking<br>Paths
+            </a>
+
+            <!-- scattered word -->
+            <span class="maze-piece maze-fragment" style="top: 65%; right: 12%; color: #3B82F615;">
+                dream
+            </span>
+
+            <!-- scattered word -->
+            <span class="maze-piece maze-fragment" style="top: 45%; left: 2%; color: #ffffff08;">
+                sand
+            </span>
+
+            <!-- quote in odd position -->
+            <div class="maze-piece" style="top: 78%; right: 5%; max-width: 300px;">
+                <p class="home-quote">"I have always imagined that Paradise will be a kind of library."</p>
+                <p class="home-quote-attr">&mdash; Borges</p>
+            </div>
+
+            <!-- entry cards scattered not in a grid -->
+            <a href="BookOfSand.html" class="maze-piece maze-card card-sand" style="top: 82%; left: 8%;">
+                <span class="card-label">Enter &rarr; Sand</span>
+            </a>
+
+            <a href="TheCircularRuins.html" class="maze-piece maze-card card-ruins" style="top: 75%; left: 35%;">
+                <span class="card-label">Enter &rarr; Ruins</span>
+            </a>
+
+            <a href="GardenOfPaths.html" class="maze-piece maze-card card-paths" style="top: 88%; left: 55%;">
+                <span class="card-label">Enter &rarr; Paths</span>
+            </a>
+
+            <!-- hidden colophon -->
+            <div class="maze-piece" style="bottom: 3%; left: 50%; transform: translateX(-50%);">
+                <p class="spotlight-hidden colophon-text">There is no beginning. There is no end.</p>
+            </div>
+
+            <!-- more scattered fragments -->
+            <span class="maze-piece maze-fragment" style="top: 92%; left: 5%; color: #ffffff06;">
+                ruins
+            </span>
+
+            <span class="maze-piece maze-fragment" style="top: 20%; right: 5%; color: #FF3C3810;">
+                pages
+            </span>
+
+            <a href="BookOfSand.html" class="maze-piece maze-fragment" style="top: 48%; right: 3%; color: #ffffff15;">
+                nor end
+            </a>
+
+            <!-- more floating words for movement -->
+            <span class="maze-piece maze-fragment" style="top: 5%; left: 45%; color: #FBBF2408;">
+                time
+            </span>
+
+            <span class="maze-piece maze-fragment" style="top: 72%; left: 45%; color: #3B82F608;">
+                phantom
+            </span>
+
+            <span class="maze-piece maze-fragment" style="top: 40%; left: 70%; color: #FF3C3808;">
+                fire
+            </span>
+
+            <span class="maze-piece maze-fragment" style="top: 85%; right: 30%; color: #ffffff05;">
+                mirror
+            </span>
+
+            <!-- hover to reveal hidden sentence -->
+            <div class="maze-piece" style="top: 30%; left: 35%;">
+                <span class="hover-reveal" style="font-size: 1.2rem;">You are inside the labyrinth already.</span>
+            </div>
+
+            <div class="maze-piece" style="top: 58%; left: 55%;">
+                <span class="hover-reveal" style="font-size: 1rem;">Every path leads to another path.</span>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
